@@ -1,13 +1,16 @@
-# This is a sample build configuration for PHP.
-# Check our guides at https://confluence.atlassian.com/x/e8YWN for more examples.
-# Only use spaces to indent your .yml configuration.
-# -----
-# You can specify a custom docker image from Docker Hub as your build environment.
+# Pipeline configuration
+
+# A docker image from Docker Hub is used for the build environment.
 image: php:5.6
 
 pipelines:
-  default:
+  default: # Pipeline that runs automatically on a commit to a branch (unless a specific pipeline exists in branches)
     - step:
+      script: # We could do something for all branches?
+        - echo "This script runs on all branches that don't have any specific pipeline assigned in 'branches'."
+  branches: # Pipelines that run automatically on a commit to a branch
+    master: # Build, Test, and Deploy the master branch
+      - step:
         caches:
           - composer
         script:
@@ -17,7 +20,16 @@ pipelines:
           - composer install
           - vendor/bin/phpunit
           - ls # do something here to update composer dependencies
-          - git ftp init --user $FTP_USERNAME --passwd $FTP_PASSWORD ftp.seanwallis.com/public_html/
+          - git ftp push --user $FTP_USERNAME --passwd $FTP_PASSWORD ftp.seanwallis.com/public_html/
+    staging: # Do something with a staging branch?
+      - step:
+        script:
+          - echo "This script runs for the staging branch."
+  custom: # Pipelines that are triggered manually
+    manual: # Trigger a manual pipeline?
+      - step:
+        script:
+          - echo "This script runs manually."
 
   options:
     docker: true
