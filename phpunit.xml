@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit colors="true">
+    <testsuites>
+        <testsuite name="Continuous Delivery Test Suite">
+            <directory>./Test/</directory>
+        </testsuite>
+    </testsuites>
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="false">
+            <directory suffix=".php">./app</directory>
+        </whitelist>
+    </filter>
+    <logging>
+        <log type="coverage-html" target="build/coverage" title="Continuous Delivery Test App"
+            charset="UTF-8" yui="true" highlight="true"
+            lowUpperBound="35" highLowerBound="70"/>
+    </logging>
+</phpunit>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CD Test App</title>
+</head>
+<body>
+{% if data is iterable %}
+
+    <h4>{{ data.login }}</h4>
+    <p>{{ data.bio }}</p>
+    {% if data.type is not empty %}
+        <p>Type: {{ data.type }}</p>
+    {% endif %}
+    {% if data.followers_data is iterable %}
+        <p>GitHub Followers:</p>
+        <ul>
+            {% for follower in data.followers_data %}
+            <li>{{ follower.login }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+{% else %}
+
+    <p>There was an error retrieving the user details. Please try refreshing your page, or try again later.</p>
+
+{% endif %}
+</body>
+</html>
