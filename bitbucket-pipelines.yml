@@ -23,5 +23,5 @@ pipelines:
           - docker build -t $DOCKER_USERNAME/cd-test:$BITBUCKET_COMMIT .
           - docker push $DOCKER_USERNAME/cd-test:$BITBUCKET_COMMIT
 
-  options
+  options:
     docker: true
