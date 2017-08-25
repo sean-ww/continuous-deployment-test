@@ -1,17 +1,14 @@
 <IfModule mod_rewrite.c>
 
-# Turn on the engine:
-RewriteEngine on
+	<IfModule mod_negotiation.c>
+	    Options -MultiViews
+	</IfModule>
 
-# Rewrite any non www.seanwallis.com or non ssl
-RewriteCond %{HTTPS} off [OR]
-RewriteCond %{HTTP_HOST} !^www.seanwallis\.com [NC]
-RewriteCond %{HTTP_HOST} !^localhost [NC]
-RewriteCond %{HTTP_HOST} !^rs.local [NC]
-RewriteRule (.*) https://www.seanwallis.com%{REQUEST_URI} [R=301,QSA,L]
+	# Turn on the engine:
+	RewriteEngine on
 
-# Send requests that are not for files to index.php
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^ index.php [QSA,L]
+	# Send requests that are not for files to index.php
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^ index.php [QSA,L]
 
 </IfModule>
