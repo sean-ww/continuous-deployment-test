@@ -4,9 +4,6 @@
 # -----
 # You can specify a custom docker image from Docker Hub as your build environment.
 
-#          - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-#          - docker build -t $DOCKER_USERNAME/cd-test:$BITBUCKET_COMMIT .
-#          - docker push $DOCKER_USERNAME/cd-test:$BITBUCKET_COMMIT
 #          - git ftp init --user $FTP_USERNAME --passwd $FTP_PASSWORD ftp.seanwallis.com/public_html/
 
 image: php:5.6
@@ -22,7 +19,9 @@ pipelines:
           - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
           - composer install
           - vendor/bin/phpunit
-          - docker version
+          - docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
+          - docker build -t $DOCKER_USERNAME/cd-test:$BITBUCKET_COMMIT .
+          - docker push $DOCKER_USERNAME/cd-test:$BITBUCKET_COMMIT
 
   options:
     docker: true
