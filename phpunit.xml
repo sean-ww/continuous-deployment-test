@@ -10,9 +10,4 @@
             <directory suffix=".php">./app</directory>
         </whitelist>
     </filter>
-    <logging>
-        <log type="coverage-html" target="build/coverage" title="Continuous Delivery Test App"
-            charset="UTF-8" yui="true" highlight="true"
-            lowUpperBound="35" highLowerBound="70"/>
-    </logging>
 </phpunit>

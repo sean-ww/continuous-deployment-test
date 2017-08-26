@@ -17,4 +17,4 @@ install:
 
 # Run tests
 script:
-  - vendor/bin/phpunit
+  - vendor/bin/phpunit --coverage-clover clover.xml
