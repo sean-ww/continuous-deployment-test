@@ -1,5 +1,0 @@
-bitbucket-pipelines.yml
-Test/
-composer.json
-composer.lock
-phpunit.xml

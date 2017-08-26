@@ -1,0 +1,20 @@
+# Project language
+language: php
+
+# Cache composer packages so "composer install" is faster
+cache:
+  directories:
+    - $HOME/.composer/cache/files
+
+# Set the php version
+php:
+  - 5.6
+
+# Install composer dependencies
+install:
+  - composer self-update
+  - composer install --no-interaction
+
+# Run tests
+script:
+  - vendor/bin/phpunit
