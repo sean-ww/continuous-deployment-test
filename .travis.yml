@@ -13,8 +13,13 @@ php:
 # Install composer dependencies
 install:
   - composer self-update
+  - composer require satooshi/php-coveralls:1.*
   - composer install --no-interaction
 
 # Run tests
 script:
   - vendor/bin/phpunit --coverage-clover clover.xml
+
+# Update code coverage
+after_script:
+  - travis_retry php vendor/bin/coveralls --coverage_clover=clover.xml -v
